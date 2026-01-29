@@ -1,24 +1,30 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Global Website Uptime</title>
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="style.css" />
-
-  <!-- Supabase SDK -->
-  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin Dashboard</title>
+<link rel="stylesheet" href="style.css" />
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 </head>
-<body>
+<body class="admin">
 
-  <div class="clock-box">
-    <div class="time" id="time">00:00:00</div>
-    <div class="date" id="date">Global Website Uptime</div>
-  </div>
 
-  <!-- JavaScript -->
-  <script src="script.js"></script>
+<div class="admin-box">
+<h2>Admin Dashboard</h2>
+
+
+<input type="password" id="adminKey" placeholder="Admin key" />
+<button onclick="loginAdmin()">Login</button>
+
+
+<div id="adminPanel" class="hidden">
+<p>Uptime Control</p>
+<button class="danger" onclick="resetUptime()">Reset Uptime</button>
+</div>
+</div>
+
+
+<script src="admin.js"></script>
 </body>
 </html>
