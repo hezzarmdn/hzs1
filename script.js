@@ -38,3 +38,17 @@ sb.from('uptime:id=eq.1').on('UPDATE', payload => {
 
 // Mulai
 init();
+async function init() {
+  const { data, error } = await sb.from('uptime').select('start_time').eq('id',1).single();
+  console.log('Fetched data:', data, 'Error:', error);
+
+  if(data) {
+    serverStartTime = data.start_time;
+    console.log('serverStartTime:', serverStartTime);
+  } else {
+    alert('Gagal ambil start_time dari server');
+  }
+
+  setInterval(updateUptime,1000);
+  updateUptime();
+}
