@@ -18,11 +18,49 @@
   <div id="adminPanel" class="hidden">
     <p>Uptime Control</p>
     <button onclick="resetUptime()">Reset ke Sekarang</button>
-    
-    <div style="margin-top:10px;">
-      <input type="number" id="daysAgo" placeholder="Masukkan hari lalu..." />
-      <button onclick="setUptime()">Set Start Time</button>
+
+    <div class="custom-time">
+      <p>Set Waktu Custom:</p>
+
+      <div class="time-unit">
+        <label>Bulan</label>
+        <button onclick="changeUnit('months', 1)">+</button>
+        <span id="monthsVal">0</span>
+        <button onclick="changeUnit('months', -1)">-</button>
+      </div>
+
+      <div class="time-unit">
+        <label>Hari</label>
+        <button onclick="changeUnit('days', 1)">+</button>
+        <span id="daysVal">0</span>
+        <button onclick="changeUnit('days', -1)">-</button>
+      </div>
+
+      <div class="time-unit">
+        <label>Jam</label>
+        <button onclick="changeUnit('hours', 1)">+</button>
+        <span id="hoursVal">0</span>
+        <button onclick="changeUnit('hours', -1)">-</button>
+      </div>
+
+      <div class="time-unit">
+        <label>Menit</label>
+        <button onclick="changeUnit('minutes', 1)">+</button>
+        <span id="minutesVal">0</span>
+        <button onclick="changeUnit('minutes', -1)">-</button>
+      </div>
+
+      <div class="time-unit">
+        <label>Detik</label>
+        <button onclick="changeUnit('seconds', 1)">+</button>
+        <span id="secondsVal">0</span>
+        <button onclick="changeUnit('seconds', -1)">-</button>
+      </div>
+
+      <p>Preview: <span id="previewDuration">0 Bulan 0 Hari 0 Jam 0 Menit 0 Detik</span></p>
+      <button onclick="setCustomUptime()">Set Waktu</button>
     </div>
+
   </div>
 </div>
 
