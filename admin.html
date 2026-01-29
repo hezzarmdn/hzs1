@@ -1,11 +1,37 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admin Dashboard</title>
-<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="style.css">
 <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+<style>
+/* Tambahan CSS khusus horizontal vertical stack */
+.custom-time.horizontal {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 15px;
+}
+
+.time-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.time-unit button {
+  width: 40px;
+  height: 30px;
+  margin: 3px 0;
+}
+
+.time-unit span {
+  font-size: 18px;
+  margin: 3px 0;
+}
+</style>
 </head>
 <body class="admin">
 
@@ -19,47 +45,45 @@
     <p>Uptime Control</p>
     <button onclick="resetUptime()">Reset ke Sekarang</button>
 
-    <div class="custom-time">
-      <p>Set Waktu Custom:</p>
-
+    <div class="custom-time horizontal">
       <div class="time-unit">
-        <label>Bulan</label>
-        <button onclick="changeUnit('months', 1)">+</button>
-        <span id="monthsVal">0</span>
-        <button onclick="changeUnit('months', -1)">-</button>
-      </div>
-
-      <div class="time-unit">
-        <label>Hari</label>
-        <button onclick="changeUnit('days', 1)">+</button>
-        <span id="daysVal">0</span>
-        <button onclick="changeUnit('days', -1)">-</button>
-      </div>
-
-      <div class="time-unit">
-        <label>Jam</label>
-        <button onclick="changeUnit('hours', 1)">+</button>
-        <span id="hoursVal">0</span>
-        <button onclick="changeUnit('hours', -1)">-</button>
+        <label>Detik</label>
+        <button onclick="changeUnit('seconds',1)">+</button>
+        <span id="secondsVal">0</span>
+        <button onclick="changeUnit('seconds',-1)">-</button>
       </div>
 
       <div class="time-unit">
         <label>Menit</label>
-        <button onclick="changeUnit('minutes', 1)">+</button>
+        <button onclick="changeUnit('minutes',1)">+</button>
         <span id="minutesVal">0</span>
-        <button onclick="changeUnit('minutes', -1)">-</button>
+        <button onclick="changeUnit('minutes',-1)">-</button>
       </div>
 
       <div class="time-unit">
-        <label>Detik</label>
-        <button onclick="changeUnit('seconds', 1)">+</button>
-        <span id="secondsVal">0</span>
-        <button onclick="changeUnit('seconds', -1)">-</button>
+        <label>Jam</label>
+        <button onclick="changeUnit('hours',1)">+</button>
+        <span id="hoursVal">0</span>
+        <button onclick="changeUnit('hours',-1)">-</button>
       </div>
 
-      <p>Preview: <span id="previewDuration">0 Bulan 0 Hari 0 Jam 0 Menit 0 Detik</span></p>
-      <button onclick="setCustomUptime()">Set Waktu</button>
+      <div class="time-unit">
+        <label>Hari</label>
+        <button onclick="changeUnit('days',1)">+</button>
+        <span id="daysVal">0</span>
+        <button onclick="changeUnit('days',-1)">-</button>
+      </div>
+
+      <div class="time-unit">
+        <label>Bulan</label>
+        <button onclick="changeUnit('months',1)">+</button>
+        <span id="monthsVal">0</span>
+        <button onclick="changeUnit('months',-1)">-</button>
+      </div>
     </div>
+
+    <p style="margin-top:10px;">Preview: <span id="previewDuration">0 Bulan 0 Hari 0 Jam 0 Menit 0 Detik</span></p>
+    <button onclick="setCustomUptime()">Set Waktu</button>
 
   </div>
 </div>
