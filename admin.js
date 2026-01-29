@@ -1,7 +1,7 @@
 const ADMIN_SECRET = 'ADMIN123'; // ganti sendiri
 
 
-const supabaseUrlA = 'https://XXXX.supabase.co';
+const supabaseUrlA = 'https://lfjormecnyrhplwfgyaq.supabase.co';
 const supabaseKeyA = 'sb_secret_wQ2OtTs7TIdXm4r5kdygpQ_OlHuqlrM';
 const adminSB = window.supabase.createClient(supabaseUrlA, supabaseKeyA);
 
