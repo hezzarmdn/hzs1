@@ -9,21 +9,22 @@
 </head>
 <body class="admin">
 
-
 <div class="admin-box">
-<h2>Admin Dashboard</h2>
+  <h2>Admin Dashboard</h2>
 
+  <input type="password" id="adminKey" placeholder="Admin key" />
+  <button onclick="loginAdmin()">Login</button>
 
-<input type="password" id="adminKey" placeholder="Admin key" />
-<button onclick="loginAdmin()">Login</button>
-
-
-<div id="adminPanel" class="hidden">
-<p>Uptime Control</p>
-<button class="danger" onclick="resetUptime()">Reset Uptime</button>
+  <div id="adminPanel" class="hidden">
+    <p>Uptime Control</p>
+    <button onclick="resetUptime()">Reset ke Sekarang</button>
+    
+    <div style="margin-top:10px;">
+      <input type="number" id="daysAgo" placeholder="Masukkan hari lalu..." />
+      <button onclick="setUptime()">Set Start Time</button>
+    </div>
+  </div>
 </div>
-</div>
-
 
 <script src="admin.js"></script>
 </body>
