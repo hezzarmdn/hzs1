@@ -9,20 +9,24 @@ async function updateUptime() {
     .eq('id', 1)
     .single();
 
+  if(!data) return;
+
+  // Hitung selisih dari server start_time
   const diff = Date.now() - data.start_time;
 
-  // jam, menit, detik
+  // Jam, menit, detik
   const h = String(Math.floor(diff / 3600000)).padStart(2,'0');
   const m = String(Math.floor((diff % 3600000) / 60000)).padStart(2,'0');
   const s = String(Math.floor((diff % 60000) / 1000)).padStart(2,'0');
   document.getElementById('time').innerText = `${h}:${m}:${s}`;
 
-  // hari & bulan
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  // Hari & Bulan
+  const days = Math.floor(diff / (1000*60*60*24));
   const months = Math.floor(days / 30);
   const remainingDays = days % 30;
   document.getElementById('duration').innerText = `${remainingDays} Hari ${months} Bulan`;
 }
 
+// Update setiap 1 detik
 setInterval(updateUptime, 1000);
 updateUptime();
