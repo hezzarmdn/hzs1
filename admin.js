@@ -2,7 +2,7 @@ const ADMIN_SECRET = 'ADMIN123'; // ganti sendiri
 
 
 const supabaseUrlA = 'https://lfjormecnyrhplwfgyaq.supabase.co';
-const supabaseKeyA = 'sb_secret_wQ2OtTs7TIdXm4r5kdygpQ_OlHuqlrM';
+const supabaseKeyA = 'sb_publishable_XUvHyt_TEzDGqUBRP1flwg_GshP2c1I';
 const adminSB = window.supabase.createClient(supabaseUrlA, supabaseKeyA);
 
 
