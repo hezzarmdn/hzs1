@@ -4,7 +4,7 @@ const sb = supabase.createClient(supabaseUrl, supabaseKey);
 
 let serverStartTime;
 
-// Update UI
+// Update tampilan timer
 function updateUptime() {
   if(!serverStartTime) return;
 
@@ -21,29 +21,25 @@ function updateUptime() {
   document.getElementById('duration').innerText = `${remainingDays} Hari ${months} Bulan`;
 }
 
-// Init
+// Ambil start_time awal
 async function init() {
   const { data, error } = await sb.from('uptime').select('start_time').eq('id',1).single();
-  console.log('Fetched data:', data, 'Error:', error);
-
-  if(!data || !data.start_time){
-    alert('Gagal ambil start_time dari server. Pastikan baris ID=1 ada dan start_time benar.');
+  if(error || !data?.start_time){
+    alert('Gagal ambil start_time dari server!');
     return;
   }
 
-  serverStartTime = data.start_time;
-  if(serverStartTime < 1e12) serverStartTime *= 1000; // detik → ms
+  serverStartTime = data.start_time < 1e12 ? data.start_time*1000 : data.start_time;
 
+  // Interval update timer
   updateUptime();
   setInterval(updateUptime, 1000);
 
-  // Realtime Supabase v2
-  const channel = sb.channel('public:uptime')
-    .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'uptime', filter: 'id=eq.1' }, payload => {
-      console.log('Realtime payload:', payload);
-      if(payload.new && payload.new.start_time){
-        serverStartTime = payload.new.start_time;
-        if(serverStartTime < 1e12) serverStartTime *= 1000;
+  // Realtime subscribe Supabase v2
+  sb.channel('public:uptime')
+    .on('postgres_changes', { event:'UPDATE', schema:'public', table:'uptime', filter:'id=eq.1' }, payload => {
+      if(payload.new?.start_time){
+        serverStartTime = payload.new.start_time < 1e12 ? payload.new.start_time*1000 : payload.new.start_time;
         updateUptime();
       }
     })
